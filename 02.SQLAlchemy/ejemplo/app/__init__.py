@@ -28,10 +28,9 @@ correomapper = mapper(Correo, correos)
 usuariomapper = mapper(Usuario, usuarios, properties={
     'correo': relation(correomapper),
 })
-
-petra = sesion.query(Usuario).get_by
-print(petra.correos)
-
+usuarios = sesion.query(Usuario).all()
+for usuario in usuarios:
+    print(usuario)
 
 # usuarios = Table('usuarios', metadata,
 #                  Column('usuario_id', Integer, primary_key=True),
