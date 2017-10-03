@@ -29,8 +29,10 @@ usuariomapper = mapper(Usuario, usuarios, properties={
     'correo': relation(correomapper),
 })
 usuarios = sesion.query(Usuario).all()
+correos = sesion.query(Correo).count()
 for usuario in usuarios:
     print(usuario)
+print("Tenemos " + str(correos) + " correos.")
 
 # usuarios = Table('usuarios', metadata,
 #                  Column('usuario_id', Integer, primary_key=True),
