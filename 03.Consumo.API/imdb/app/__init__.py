@@ -1,4 +1,4 @@
-from tweepy import Stream, OAuthHandler
+from tweepy import Stream, OAuthHandler, API, Cursor
 from tweepy.streaming import StreamListener
 
 cke = "S4IYPnnEScDG2USwBVke3MCdZ"
@@ -9,13 +9,24 @@ ase = "MZPl8APzi746wnob4lP0FZefFnOB0mtcH0sAHOWZKHbB5"
 auth = OAuthHandler(cke, cse)
 auth.set_access_token(ato, ase)
 
-#class TLListener(StreamListener):
-#    def on_data(self, raw_data):
-#        print(raw_data)
-#        return(True)
+# api = API(auth)
+#
+# for tuit in Cursor(api.home_timeline).items(10):
+#     print(tuit.text)
+#
+# for seguidor in Cursor(api.friends).items():
+#     print(seguidor._json)
+#
+# for tuit in Cursor(api.user_timeline).items(2):
+#     print(tuit.text)
 
-#    def on_error(self, status_code):
-#        print(status_code)
+class TLListener(StreamListener):
+    def on_data(self, raw_data):
+        print(raw_data)
+        return True
 
-#twStream = Stream(auth, TLListener())
-#twStream.filter(track=["uip"])
+    def on_error(self, status_code):
+        print(status_code)
+
+twStream = Stream(auth, TLListener())
+twStream.filter(track=["#uip"])
