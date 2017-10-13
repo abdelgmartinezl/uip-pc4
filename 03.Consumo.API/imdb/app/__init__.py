@@ -29,4 +29,4 @@ class TLListener(StreamListener):
         print(status_code)
 
 twStream = Stream(auth, TLListener())
-twStream.filter(track=["#uip"])
+twStream.filter(track=["#PrayForVegas"])
