@@ -1,12 +1,23 @@
 from flask import Flask
 from flask_restful import Api, Resource
+from flask_restful import reqparse
 
 app = Flask(__name__)
 api = Api(app)
 
 class CrearUsuario(Resource):
     def post(self):
-        return {'estado': 'exitoso'}
+        try:
+            parser = reqparse.RequestParser()
+            parser.add_argument('correo', type=str, help='Correo electronico')
+            parser.add_argument('passwd', type=str, help='Contraseña')
+            args = parser.parse_args()
+            _correo = args['correo']
+            _passwd = args['passwd']
+
+            return {'correo': args['correo'], 'password': args['passwd']}
+        except Exception as e:
+            return {'error': str(e)}
 
 api.add_resource(CrearUsuario, '/usuario')
 
