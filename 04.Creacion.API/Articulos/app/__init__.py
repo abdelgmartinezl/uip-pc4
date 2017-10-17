@@ -63,8 +63,31 @@ class AutenticarUsuario(Resource):
         except Exception as e:
             return {'error': str(e)}
 
+class AgregarArticulos(Resource):
+    def post(self):
+        try:
+            parser = reqparse.RequestParser()
+            parser.add_argument('id_usuario', type=str)
+            parser.add_argument('articulo', type=str)
+            args = parser.parse_args()
+            _id_usuario = args['id_usuario']
+            _articulo = args['articulo']
+
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            cursor.callproc('spAgregarArticulos', (_id_usuario,_articulo))
+            resultado = cursor.fetchall()
+
+            conn.commit()
+            return {'estado': '200', 'mensaje': 'Exitoso'}
+
+        except Exception as e:
+            return {'error': str(e)}
+
+
 api.add_resource(CrearUsuario, '/usuario')
 api.add_resource(AutenticarUsuario, '/autenticacion')
+api.add_resource(AgregarArticulos, '/articulo')
 
 
 if __name__ == "__main__":

@@ -30,3 +30,21 @@ CREATE PROCEDURE spAutenticarUsuario (IN pusuario VARCHAR(50))
         SELECT * FROM usuarios WHERE usuario = pusuario;
     END//
 DELIMITER ;
+
+
+CREATE TABLE articulo (
+    id INT NULL AUTO_INCREMENT PRIMARY KEY,
+    id_usuario VARCHAR(50) NULL,
+    articulo VARCHAR(50) NULL
+)
+
+DELIMITER $$
+CREATE PROCEDURE spAgregarArticulos (
+IN pusuario INT,
+IN particulo VARCHAR(50)
+)
+BEGIN
+    INSERT INTO articulo(id_usuario, articulo)
+    VALUES(pusuario, particulo);
+END$$
+DELIMITER ;
