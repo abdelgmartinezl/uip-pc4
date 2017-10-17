@@ -48,3 +48,11 @@ BEGIN
     VALUES(pusuario, particulo);
 END$$
 DELIMITER ;
+
+
+DELIMITER //
+CREATE PROCEDURE spObtenerArticulos(IN pusuario INT)
+BEGIN
+    SELECT id, articulo FROM articulo WHERE id_usuario = pusuario;
+END//
+DELIMITER ;

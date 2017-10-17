@@ -84,10 +84,37 @@ class AgregarArticulos(Resource):
         except Exception as e:
             return {'error': str(e)}
 
+class ObtenerArticulos(Resource):
+    def post(self):
+        try:
+            parser = reqparse.RequestParser()
+            parser.add_argument('id_usuario', type=str)
+            args = parser.parse_args()
+            _id_usuario = args['id_usuario']
+
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            cursor.callproc('spObtenerArticulos', (_id_usuario,))
+            resultado = cursor.fetchall()
+
+            lista_articulos = []
+            for articulo in resultado:
+                i = {
+                    'id': articulo[0],
+                    'articulo': articulo[1]
+                }
+                lista_articulos.append(i)
+
+            return {'estado': '200', 'articulos': lista_articulos}
+
+        except Exception as e:
+            return {'error': str(e)}
+
 
 api.add_resource(CrearUsuario, '/usuario')
 api.add_resource(AutenticarUsuario, '/autenticacion')
 api.add_resource(AgregarArticulos, '/articulo')
+api.add_resource(ObtenerArticulos, '/articulos')
 
 
 if __name__ == "__main__":
