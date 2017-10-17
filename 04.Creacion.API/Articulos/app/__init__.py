@@ -39,7 +39,33 @@ class CrearUsuario(Resource):
         except Exception as e:
             return {'error': str(e)}
 
+class AutenticarUsuario(Resource):
+    def post(self):
+        try:
+            parser = reqparse.RequestParser()
+            parser.add_argument('correo', type=str, help='Correo electronico')
+            parser.add_argument('passwd', type=str, help='Contraseña')
+            args = parser.parse_args()
+            _correo = args['correo']
+            _passwd = args['passwd']
+
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            cursor.callproc('spAutenticarUsuario', (_correo,))
+            resultado = cursor.fetchall()
+
+            if len(resultado) > 0:
+                if str(resultado[0][2]) == _passwd:
+                    return {'estado': 200, 'id': str(resultado[0][0])}
+                else:
+                    return {'estado': 176, 'mensaje': "¡Autenticacion fallida!"}
+
+        except Exception as e:
+            return {'error': str(e)}
+
 api.add_resource(CrearUsuario, '/usuario')
+api.add_resource(AutenticarUsuario, '/autenticacion')
+
 
 if __name__ == "__main__":
     app.run(debug=True)
