@@ -18,9 +18,11 @@ def corutina_cadena():
 
 @asyncio.coroutine
 def mostrar_fecha(numero, loop):
-    fecha_final = loop.time() + 50.0
+    tiempo_final = loop.time() + 50.0
     while True:
         print("Ciclo: {} Tiempo: {}".format(numero, datetime.datetime.now()))
+        if (loop.time() + 1.0) >= tiempo_final:
+            break
         yield from asyncio.sleep(random.randint(0, 5))
 
 if __name__ == "__main__":
@@ -42,4 +44,3 @@ if __name__ == "__main__":
     asyncio.ensure_future(mostrar_fecha(1, loop))
     asyncio.ensure_future(mostrar_fecha(2, loop))
     loop.run_forever()
-    
