@@ -2,7 +2,6 @@ import sqlite3
 import hashlib
 
 #db = sqlite3.connect(':memory:') # Base de datos en memoria
-
 def cifrar_password(password):
     cifrado = hashlib.sha512(password.encode('utf-8')).hexdigest()
     return cifrado
