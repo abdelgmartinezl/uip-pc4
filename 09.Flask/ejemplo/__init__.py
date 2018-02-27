@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for
+from flask import Flask, redirect, url_for, request
 app = Flask(__name__)
 
 # @app.route('/')
@@ -21,21 +21,40 @@ app = Flask(__name__)
 # def calcular_itbms2(a):
 #     return str(a*1.07)
 
-@app.route('/admin')
-def saludar_admin():
-    return 'Maestro en jefe, saludos...'
+# @app.route('/admin')
+# def saludar_admin():
+#     return 'Maestro en jefe, saludos...'
 
-@app.route('/invitado/<invitado>')
-def saludar_invitado(invitado):
-    return 'Hola, %s, conoces a Petra?' % invitado
+# @app.route('/invitado/<invitado>')
+# def saludar_invitado(invitado):
+#     return 'Hola, %s, conoces a Petra?' % invitado
 
-@app.route('/usuario/<nombre>')
-def saludar_usuario(nombre):
-    if nombre == 'admin':
-        return redirect(url_for('saludar_admin'))
+# @app.route('/usuario/<nombre>')
+# def saludar_usuario(nombre):
+#     if nombre == 'admin':
+#         return redirect(url_for('saludar_admin'))
+#     else:
+#         return redirect(url_for('saludar_invitado', 
+#             invitado=nombre))
+
+@app.route('/vive')
+def vivir():
+    return 'Puedes vivir en Brazil'
+
+@app.route('/muere')
+def morir():
+    return 'Cuidado con irte a Brazil'
+
+@app.route('/brasil', methods=['POST', 'GET'])
+def brasil():
+    if request.method == 'POST':
+        salario = float(request.form['sm'])
+        if salario > 3750.0:
+            return redirect(url_for('vivir'))
+        else:
+            return redirect(url_for('morir'))
     else:
-        return redirect(url_for('saludar_invitado', 
-            invitado=nombre))
+        return 'Para que quieres ir?'
 
 if __name__ == '__main__':
     app.run()
