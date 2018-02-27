@@ -17,5 +17,9 @@ def saludar_nombre(nombre):
 def calcular_itbms(a):
     return str(a*1.07)
 
+@app.route('/calculadora/<float:a>')
+def calcular_itbms2(a):
+    return str(a*1.07)
+
 if __name__ == '__main__':
     app.run()
