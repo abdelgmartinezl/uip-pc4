@@ -1,0 +1,13 @@
+<!DOCTYPE HTML>
+<HTML>
+    <BODY>
+        <TABLE>
+            {% for llave, valor in result.items() %}
+            <TR>
+                <TH> {{ llave }} </TH>
+                <TD> {{ valor }} </TD>
+            </TR>
+            {% endfor %}
+        </TABLE>
+    </BODY>
+</HTML>

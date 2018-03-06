@@ -1,0 +1,15 @@
+<html>
+    <body>
+        <table border=1>
+            {% for llave, valor in r.items() %}
+            <tr>
+                <th> {{ llave }} </th>
+                <td> {{ valor }} </td>
+                {% if valor|float > 1000 %}
+                <td> Comision: {{ valor|float*0.25 }} </td>
+                {% endif%}
+            </tr>   
+            {% endfor %}
+        </table>
+    </body>
+</html>
