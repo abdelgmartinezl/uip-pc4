@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>
+            Mensajes con Flask
+        </title>
+    </head>
+    <body>
+        {% with mensajes = get_flashed_messages() %}
+        {% if mensajes %}
+        <ul>
+            {% for mensaje in mensajes %}
+            <li>{{ mensaje }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        <h1>Ejemplo de Mensajes en Flask</h1>
+        <p>¿Quiere usted <a href="{{ url_for('login') }}"><b>iniciar sesion?</b></a>
+    </body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>
+            Mensajes con Flask
+        </title>
+    </head>
+    <body>
+        <h1>Inicio de Sesion</h1>
+        {% if error %}
+        <p><strong>Error: </strong> {{ error }}
+        {% endif %}
+        <form action="" method=post>
+            <dl>
+                <dt>Usuario
+                <dd><input type=text name=usuario value="{{ request.form.usuario }}">
+                <dt>Contrasena:
+                <dd><input type=password name=contrasena>
+            </dl>
+            <p><input type=submit value=Inicio>
+        </form>
+    </body>
+</html>
