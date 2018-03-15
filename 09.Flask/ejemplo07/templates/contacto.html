@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+    <body>
+        <h2>Contacto</h2>
+        {% for mensaje in form.nombre.errors %}
+        <div> {{ mensaje }} </div>
+        {% endfor %}
+        {% for mensaje in form.email.errors %}
+        <div> {{ mensaje }} </div>
+        {% endfor %}
+        <form action="http://localhost:5000/contacto" method="post">
+            <fieldset>
+                <legend>Formulario de Contacto</legend>
+                {{ form.hidden_tag() }}
+                <div>
+                    {{ form.nombre.label }}<br>
+                    {{ form.nombre }}
+                <br>
+                    {{ form.genero.label }} {{ form.genero }}
+                    {{ form.direccion.label }}<br>
+                    {{ form.direccion}}
+                <br>
+                    {{ form.email.label }}<br>
+                    {{ form.email }}
+                <br>
+                    {{ form.edad.label }}<br>
+                    {{ form.edad }}
+                <br>
+                    {{ form.lengprog.label }}<br>
+                    {{ form.lengprog }}
+                <br>
+                    {{ form.submit }}
+                </div>
+            </fieldset>
+    </body>
+</html>
