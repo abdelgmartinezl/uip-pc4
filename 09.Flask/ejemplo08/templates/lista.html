@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html>
+    <body>
+        <table border=1>
+            <thead>
+                <td>Nombre</td><td>Direccion</td><td>Ciudad</td><td>Pin</td>
+            </thead>
+            {% for fila in filas %}
+            <tr>
+                <td>{{fila["nombre"]}}</td><td>{{fila["direccion"]}}</td><td>{{fila["ciudad"]}}</td><td>{{fila["pin"]}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="/">Volver al inicio</a>
+    </body>
+</html>

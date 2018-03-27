@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h3>Estudiantes</h3>
+        <hr />
+        {% for categoria, mensaje in get_flashed_messages(with_categories=true) %}
+        <div class="alert alert_danger">
+            {{ mensaje }}
+        </div>
+        {% endfor %}
+        <form action="{{ request.path }}" method="POST">
+            <label for="nombre">Nombre</label><br>
+            <input type="text" name="nombre" placeholder="nombre"><br>
+            <label for="ciudad">Ciudad</label><br>
+            <input type="text" name="ciudad" placeholder="ciudad"><br>
+            <label for="direccion">Direccion</label><br>
+            <input type="text" name="direccion" placeholder="direccion"><br>
+            <label for="pin">Pin</label><br>
+            <input type="text" name="pin" placeholder="pin"><br>
+            <input type="submit" value="Enviar">
+        </form>
+    </body>
+</html>

@@ -1,0 +1,16 @@
+<html>
+    <body>
+        <form action="{{ url_for('agregar_estudiante') }}" method="POST">
+            <h4>Informacion de Estudiante</h4>
+            Nombre<br>
+            <input type="text" name="nombre" /></br>
+            Direccion<br>
+            <textarea name="direccion"></textarea><br>
+            Ciudad<br>
+            <input type="text" name="ciudad"><br>
+            Pin<br>
+            <input type="text" name="pin"><br>
+            <input type="submit" value="Enviar"><br>
+        </form>
+    </body>
+</html>
