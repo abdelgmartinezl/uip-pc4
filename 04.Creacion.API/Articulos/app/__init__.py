@@ -116,6 +116,9 @@ api.add_resource(AutenticarUsuario, '/autenticacion')
 api.add_resource(AgregarArticulos, '/articulo')
 api.add_resource(ObtenerArticulos, '/articulos')
 
+@app.route('/')
+def index():
+    return 'tamo activo'
 
 if __name__ == "__main__":
     app.run(debug=True)
